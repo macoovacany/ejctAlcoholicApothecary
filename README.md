@@ -33,7 +33,13 @@ favourite drinks or tracking inventory of available drinks etc.
 
 ## Wire frame
 
+*Work in Progress*
+![Work in Progress WireFrame](./design-documents/20210411_140402.jpg)
+
 ## API used
+
+ * https://www.thecocktaildb.com/api.php
+
 
 ## Rough Breakdown of Features
 
