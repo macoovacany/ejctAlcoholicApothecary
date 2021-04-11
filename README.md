@@ -38,6 +38,9 @@ favourite drinks or tracking inventory of available drinks etc.
 
 ## API used
 
+ * https://www.thecocktaildb.com/api.php
+
+
 ## Rough Breakdown of Features
 
 1. modal to add stock
