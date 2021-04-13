@@ -51,3 +51,10 @@ function writeCocktailCard(domLocation, cocktail) {
     console.log(`<img src='${cocktail.imagesrc}' alt="${cocktail.name}"`)
 
 };
+$('.owl-carousel').owlCarousel({
+    margin: 10,
+    loop: true,
+    autoWidth: true,
+    items: 4
+})
+$(".owl-carousel").owlCarousel();

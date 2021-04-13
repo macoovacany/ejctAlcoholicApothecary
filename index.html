@@ -7,8 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alcoholic Apothecary</title>
     <meta name="author" content="ejct">
+    <link rel="stylesheet" href="./assets/css/style.css">
     <link rel="stylesheet" href="./assets/css/app.css">
     <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
 </head>
 
 <body>
@@ -17,23 +20,28 @@
     <main class="app-wrapper grid grid-cols-2">
         <section id="available-drinks">
             <div class="stock-box">
-                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
+                <button class="bg-blue-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full">
                 Add Stock
               </button>
-                <a href="https://placeholder.com/"><img src="https://via.placeholder.com/250" alt=""></a>
+                <div class="owl-carousel">
+                    <a href="https://placeholder.com/"><img src="https://via.placeholder.com/250" alt=""></a>
+                    <a href="https://placeholder.com/"><img src="https://via.placeholder.com/250" alt=""></a>
+                    <a href="https://placeholder.com/"><img src="https://via.placeholder.com/250" alt=""></a>
+                </div>
             </div>
             <div class="cocktail-box">
-                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
+                <button class="bg-blue-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full">
                 Make me a cocktail
                 </button>
-                <a href="https://placeholder.com/"><img src="https://via.placeholder.com/250" alt=""></a>
             </div>
+        </section>
+
         </section>
         <section id="suggested-cocktails">
         </section>
         <section id="add-drinks"></section>
         <section id="mixing-instructions"></section>
- 
+
         <section id="suggested-cocktails"></section>
         <div class="w-full max-w-sm overflow-hidden rounded border bg-white shadow">
             <div class="relative">
@@ -150,16 +158,13 @@
                             <p class="text-xs text-gray-500"><a href="#" class="hover:underline hover:text-blue-500">username2019</a> • 2 days ago</p>
                         </div>
                     </div>
-                    </section>
-                    <section id="available-drinks"></section>
-                    <section id="add-drinks"></section>
-                    <section id="mixing-instructions"></section>
+
 
     </main>
 
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
     <script src="./assets/js/app.js"></script>
 </body>
 
