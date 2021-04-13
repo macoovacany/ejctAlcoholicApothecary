@@ -21,17 +21,30 @@ function getSuggestedCocktails(drinks) {
 // getSuggestedCocktails(["Vodka","Gin"]);
 
 
-// get list of available drinks
-function getAvailableIngredients() {
+// get list of available ingredients
+// includes non-alocholic stuff
+function getAPIIngredients() {
     fetch(`https://www.thecocktaildb.com/api/json/v2/${API_KEY_COCKTAIL_DB}/list.php?i=list`)
         // .then(response => console.log(response));
         .then(response => response.json())
         .then(data => {
-            data.
-            localStorage.setItem("available-drinks", JSON.stringify(data))
+            // 
+            data = data.drinks.map((d) => { return d.strIngredient1 });
+            localStorage.setItem("api-ingredients", JSON.stringify(data));
         });
 }
 
+
+function getAPIAlcohol() {
+    fetch(`https://www.thecocktaildb.com/api/json/v2/${API_KEY_COCKTAIL_DB}/list.php?a=list`)
+        // .then(response => console.log(response));
+        .then(response => response.json())
+        .then(data => {
+            // 
+            data = data.drinks.map((d) => { return d.strIngredient1 });
+            localStorage.setItem("api", JSON.stringify(data));
+        });
+}
 
 
 
