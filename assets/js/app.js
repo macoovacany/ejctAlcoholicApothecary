@@ -40,21 +40,19 @@ function getAPIIngredients() {
 // ******************************************
 // update Suggested items 
 // ******************************************
-
-function writeSuggestedCocktails(drinks) {
-    fetch(`https://www.thecocktaildb.com/api/json/v2/${API_KEY_COCKTAIL_DB}/filter.php?i=${drinks.join(',')}`)
-        .then(response => response.json())
-        .then(data => {
-
-
+drinks = ["Vodka", "Gin", "Tequila"];
+let suggestedCocktailsURL = `https://www.thecocktaildb.com/api/json/v2/${API_KEY_COCKTAIL_DB}/filter.php?i=${drinks.join(',')}`
+fetch(suggestedCocktailsURL)
+    .then(response => response.json())
+    .then(data => {
+        // build the html list items from the drinks arrat
+        html = '';
+        data.drinks.forEach(drink => {
+            html = html + suggestedCocktailLI(drink);
         });
-}
-
-// getSuggestedCocktails(["Vodka","Gin"]);
-
-function suggestedCocktailUL(arrDrinks) {
-
-}
+        // update the DOM
+        $("#suggested-cocktails").html(`<ul>${html}</ul>`);
+    })
 
 
 function suggestedCocktailLI(cocktail) {
