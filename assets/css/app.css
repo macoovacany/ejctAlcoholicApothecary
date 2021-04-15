@@ -10,3 +10,14 @@
 .button {
     position: absolute;
 }
+
+.add-stock-modal {
+    position: absolute;
+    display: flex;
+    align-self: center;
+}
+
+.modal-bg {
+    background-color: gray;
+    opacity: 0.5;
+}
