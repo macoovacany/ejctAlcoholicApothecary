@@ -136,6 +136,7 @@ const $modalSpan = document.querySelector("#modalSpan");
 $addStockButton.addEventListener("click", () => {
     $addStockModal.removeClass("hidden");
     $addStockModal.addClass("add-stock-modal");
+    $modalList.empty();
     document.body.append(`
     <div class="modal-bg"></div>
     `);
