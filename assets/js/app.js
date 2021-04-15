@@ -128,10 +128,13 @@ $(".owl-carousel").owlCarousel();
 // If OK is pressed then the modal disappears and the changes are returned to localDrinks
 const $addStockButton = document.querySelector("#addStockButton");
 const $addStockModal = document.querySelector("#add-drinks");
+const $modalCancel = document.querySelector("#modalCancel");
+const $modalOK = document.querySelector("#modalOK");
 $addStockButton.addEventListener("click", () => {
     $addStockModal.removeClass("hidden");
     $addStockModal.addClass("add-stock-modal");
     document.body.append(`
     <div class="modal-bg"></div>
-    `)
+    `);
+
 });
