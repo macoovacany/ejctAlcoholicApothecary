@@ -152,22 +152,21 @@ $addStockButton.addEventListener("click", () => {
             </div>
         `)
     });
-    
-});
-$modalItem.addEventListener("click", (e) => {
-    if (e.currentTarget.dataset.toggle === "true") {
-        e.currentTarget.removeClass("selected");
-        e.currentTarget.querySelector("#modalSpan").removeClass("spanSelected");
-        e.currentTarget.dataset.toggle = "false";
-    } else {
-        e.currentTarget.addClass("selected");
-        e.currentTarget.querySelector("#modalSpan").addClass("spanSelected");
-        e.currentTarget.dataset.toggle = "true";
-    };
-});
-$modalCancel.addEventListener("click", () => {
+    $modalItem.addEventListener("click", (e) => {
+        if (e.currentTarget.dataset.toggle === "true") {
+            e.currentTarget.removeClass("selected");
+            e.currentTarget.querySelector("#modalSpan").removeClass("spanSelected");
+            e.currentTarget.dataset.toggle = "false";
+        } else {
+            e.currentTarget.addClass("selected");
+            e.currentTarget.querySelector("#modalSpan").addClass("spanSelected");
+            e.currentTarget.dataset.toggle = "true";
+        };
+    });
+    $modalCancel.addEventListener("click", () => {
 
-});
-$modalOK.addEventListener("click", () => {
+    });
+    $modalOK.addEventListener("click", () => {
 
+    });
 });
