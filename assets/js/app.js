@@ -58,7 +58,7 @@ function getRandomIngedients(count) {
 
 
 
-
+// 
 
 
 
@@ -119,5 +119,3 @@ $('.owl-carousel').owlCarousel({
     autoWidth: true,
     items: 4
 })
-$(".owl-carousel").owlCarousel();
-
