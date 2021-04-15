@@ -1,0 +1,23 @@
+.subtitle-js {
+    font-size: 1.99vw;
+    color: crimson;
+    font-style: italic;
+}
+
+.md\:text-xl {
+    color: blue;
+    font-size: 1.25rem;
+    margin-block: auto;
+    transform: rotateY( 45deg);
+}
+
+.md\:w-3\/4 {
+    width: 75%;
+    background: skyblue;
+}
+
+p {
+    font-weight: bolder;
+    font-style: italic;
+    color: crimson;
+}
