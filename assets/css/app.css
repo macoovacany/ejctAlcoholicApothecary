@@ -23,7 +23,7 @@
 }
 
 .selected {
-    @apply border-2 border-green-400 hover:border-green-700
+    @apply border-2 border-green-400 hover:border-green-700 text-green-400 hover:text-green-700
 }
 
 .spanSelected {
