@@ -120,3 +120,9 @@ $('.owl-carousel').owlCarousel({
     items: 4
 })
 $(".owl-carousel").owlCarousel();
+
+// Adding stock to the available ingredients in local storage, using a modal which displays drink options on auto-complete
+// I need a function called when the button is pressed (an event listener is on the button), which renders a modal, and an opaque gray in the foreground, in the absolute center of the screen
+// Event listeners for the entire scrollable, searchable menu, when clicked is toggled to enter the modalLocalDrinks array, and to toggle the appearance of the selected items
+// If cancel is pressed then the modal disappears without making any changes to localDrinks
+// If OK is pressed then the modal disappears and the changes are returned to localDrinks
