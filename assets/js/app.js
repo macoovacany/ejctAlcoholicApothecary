@@ -131,6 +131,7 @@ const $addStockModal = document.querySelector("#add-drinks");
 const $modalCancel = document.querySelector("#modalCancel");
 const $modalOK = document.querySelector("#modalOK");
 const $modalList = document.querySelector("#modalList");
+const $modalItem = document.querySelector("#modalItem");
 $addStockButton.addEventListener("click", () => {
     $addStockModal.removeClass("hidden");
     $addStockModal.addClass("add-stock-modal");
@@ -141,12 +142,17 @@ $addStockButton.addEventListener("click", () => {
     allIngredients.forEach( (i) => {
         $modalList.append(`
             <div
+                id="modalItem"
                 class="flex justify-start cursor-pointer text-gray-700 hover:text-blue-400 hover:bg-blue-100 rounded-md px-2 py-2 my-2">
                 <span class="bg-gray-400 h-2 w-2 m-2 rounded-full"></span>
                 <div class="flex-grow font-medium px-2">${allIngredients[i]}</div>
             </div>
-        `)});
+        `)
+    });
     
+});
+$modalItem.addEventListener("click", () => {
+
 });
 $modalCancel.addEventListener("click", () => {
 
