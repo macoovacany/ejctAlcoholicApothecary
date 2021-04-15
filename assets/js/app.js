@@ -129,5 +129,6 @@ $(".owl-carousel").owlCarousel();
 const $addStockButton = document.querySelector("#addStockButton");
 const $addStockModal = document.querySelector("#add-drinks");
 $addStockButton.addEventListener("click", () => {
-
+    $addStockModal.removeClass("hidden");
+    
 });
