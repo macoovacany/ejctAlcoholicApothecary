@@ -126,3 +126,8 @@ $(".owl-carousel").owlCarousel();
 // Event listeners for the entire scrollable, searchable menu, when clicked is toggled to enter the modalLocalDrinks array, and to toggle the appearance of the selected items
 // If cancel is pressed then the modal disappears without making any changes to localDrinks
 // If OK is pressed then the modal disappears and the changes are returned to localDrinks
+const $addStockButton = document.querySelector("#addStockButton");
+const $addStockModal = document.querySelector("#add-drinks");
+$addStockButton.addEventListener("click", () => {
+
+});
