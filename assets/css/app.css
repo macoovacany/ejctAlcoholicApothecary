@@ -1,3 +1,16 @@
+
+.suggested-drinks-height {
+    height: 16rem;
+
+/* website  */
+
+.button {
+    position: absolute;
+}
+
+
+/* available-drinks */
+
 .owl-theme .owl-carousel .owl-page.active span {
     background-color: red;
     border: 2px solid red;
@@ -28,4 +41,51 @@
 
 .spanSelected {
     @apply bg-green-400 hover:bg-green-700
+
+.ingredient-select {
+    width: 50px;
+    height: 50px;
+}
+
+.ingredient-select:hover {
+    width: 70px;
+    height: 70px;
+}
+
+.ingredient-select[data-is-selected="true"]::after {
+    content: "🤚";
+}
+
+
+/* suggested-cocktails */
+
+
+/* mixing-instructions */
+
+
+/* add-drinks */
+
+.subtitle-js {
+    font-size: 1.99vw;
+    color: crimson;
+    font-style: italic;
+}
+
+.md\:text-xl {
+    color: blue;
+    font-size: 1.25rem;
+    margin-block: auto;
+    transform: rotateY( 45deg);
+}
+
+.md\:w-3\/4 {
+    width: 75%;
+    background: skyblue;
+}
+
+p {
+    font-weight: bolder;
+    font-style: italic;
+    color: crimson;
+
 }

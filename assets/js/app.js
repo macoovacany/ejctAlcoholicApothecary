@@ -58,7 +58,7 @@ function getRandomIngedients(count) {
 
 
 
-
+// 
 
 
 
@@ -118,6 +118,7 @@ $('.owl-carousel').owlCarousel({
     loop: true,
     autoWidth: true,
     items: 4
+
 })
 $(".owl-carousel").owlCarousel();
 
@@ -170,3 +171,6 @@ $addStockButton.addEventListener("click", () => {
 
     });
 });
+
+})
+
