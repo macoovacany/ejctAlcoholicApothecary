@@ -130,5 +130,8 @@ const $addStockButton = document.querySelector("#addStockButton");
 const $addStockModal = document.querySelector("#add-drinks");
 $addStockButton.addEventListener("click", () => {
     $addStockModal.removeClass("hidden");
-    
+    $addStockModal.addClass("add-stock-modal");
+    document.body.append(`
+    <div class="modal-bg"></div>
+    `)
 });
