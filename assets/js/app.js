@@ -160,6 +160,7 @@ $modalItem.addEventListener("click", (e) => {
         e.currentTarget.dataset.toggle = "false";
     } else {
         e.currentTarget.addClass("selected");
+        e.currentTarget.querySelector("#modalSpan").addClass("spanSelected");
         e.currentTarget.dataset.toggle = "true";
     };
 });
