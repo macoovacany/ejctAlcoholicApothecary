@@ -17,21 +17,26 @@
     <header></header>
 
     <main class="app-wrapper grid grid-cols-2">
-        <section id="available-drinks">
+        <section id="available-drinks" class="flex space-x-4">
             <div class="stock-box">
-                <button class="bg-blue-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full">
-                    Add Stock
-                </button>
+                <div class="flex justify-between">
+                    <button class="bg-blue-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full">
+                        Add some more drink stock!
+                    </button>
+                    <button class="bg-blue-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full">
+                        What cocktails can I make?
+                    </button>
+
+                </div>
+
+
                 <div class="owl-carousel">
-                    <a href="#"><img src="https://www.thecocktaildb.com/images/ingredients/gin-Small.png" width="250" height="250" alt="Gin"></a>
-                    <a href="#"><img src="https://www.thecocktaildb.com/images/ingredients/tequila-Small.png" width="250" height="250" alt="Tequila"></a>
-                    <a href="#"><img src="https://www.thecocktaildb.com/images/ingredients/vodka-Small.png" width="250" height="250" alt="Vodka"></a>
+                    <div class="ingredient-select" data-selected="true"> <img src="https://www.thecocktaildb.com/images/ingredients/gin-Small.png" alt="Gin"></div>
+                    <div class="ingredient-select"> <img src="https://www.thecocktaildb.com/images/ingredients/tequila-Small.png" alt="Tequila"></div>
+                    <div class="ingredient-select"> <img src="https://www.thecocktaildb.com/images/ingredients/vodka-Small.png" alt="Vodka"></div>
                 </div>
             </div>
             <div class="cocktail-box">
-                <button class="bg-blue-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full">
-                    Make me a cocktail
-                </button>
             </div>
         </section>
 
