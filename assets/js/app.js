@@ -123,20 +123,30 @@ $(".owl-carousel").owlCarousel();
 
 // Adding stock to the available ingredients in local storage, using a modal which displays drink options on auto-complete
 // I need a function called when the button is pressed (an event listener is on the button), which renders a modal, and an opaque gray in the foreground, in the absolute center of the screen
-// Event listeners for the entire scrollable, searchable menu, when clicked is toggled to enter the modalLocalDrinks array, and to toggle the appearance of the selected items
-// If cancel is pressed then the modal disappears without making any changes to localDrinks
-// If OK is pressed then the modal disappears and the changes are returned to localDrinks
+// Event listeners for the entire scrollable, searchable menu, when clicked is toggled to enter the modalLocalIngredients array, and to toggle the appearance of the selected items
+// If cancel is pressed then the modal disappears without making any changes to localIngredients
+// If OK is pressed then the modal disappears and the changes are returned to localIngredients
 const $addStockButton = document.querySelector("#addStockButton");
 const $addStockModal = document.querySelector("#add-drinks");
 const $modalCancel = document.querySelector("#modalCancel");
 const $modalOK = document.querySelector("#modalOK");
+const $modalList = document.querySelector("#modalList");
 $addStockButton.addEventListener("click", () => {
     $addStockModal.removeClass("hidden");
     $addStockModal.addClass("add-stock-modal");
     document.body.append(`
     <div class="modal-bg"></div>
     `);
-
+    const allIngredients = JSON.parse(localStorage.getItem("api-ingredients"));
+    allIngredients.forEach( (i) => {
+        $modalList.append(`
+            <div
+                class="flex justify-start cursor-pointer text-gray-700 hover:text-blue-400 hover:bg-blue-100 rounded-md px-2 py-2 my-2">
+                <span class="bg-gray-400 h-2 w-2 m-2 rounded-full"></span>
+                <div class="flex-grow font-medium px-2">${allIngredients[i]}</div>
+            </div>
+        `)});
+    
 });
 $modalCancel.addEventListener("click", () => {
 
