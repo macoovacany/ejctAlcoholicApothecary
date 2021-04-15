@@ -10,32 +10,33 @@
     <link rel="stylesheet" href="./assets/css/app.css">
     <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
 </head>
 
 <body>
     <header></header>
 
     <main class="app-wrapper grid grid-cols-2">
-        <section id="available-drinks">
+        <section id="available-drinks" class="flex space-x-4">
             <div class="stock-box">
-                <button class="bg-blue-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full">
-                    Add Stock
-                </button>
+                <div class="flex justify-between">
+                    <button class="bg-blue-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full">
+                        Add some more drink stock!
+                    </button>
+                    <button class="bg-blue-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full">
+                        What cocktails can I make?
+                    </button>
+
+                </div>
+
+
                 <div class="owl-carousel">
-                    <a href="#"><img src="https://www.thecocktaildb.com/images/ingredients/gin-Small.png" width="250"
-                            height="250" alt="Gin"></a>
-                    <a href="#"><img src="https://www.thecocktaildb.com/images/ingredients/tequila-Small.png"
-                            width="250" height="250" alt="Tequila"></a>
-                    <a href="#"><img src="https://www.thecocktaildb.com/images/ingredients/vodka-Small.png" width="250"
-                            height="250" alt="Vodka"></a>
+                    <div class="ingredient-select" data-selected="true"> <img src="https://www.thecocktaildb.com/images/ingredients/gin-Small.png" alt="Gin"></div>
+                    <div class="ingredient-select"> <img src="https://www.thecocktaildb.com/images/ingredients/tequila-Small.png" alt="Tequila"></div>
+                    <div class="ingredient-select"> <img src="https://www.thecocktaildb.com/images/ingredients/vodka-Small.png" alt="Vodka"></div>
                 </div>
             </div>
             <div class="cocktail-box">
-                <button class="bg-blue-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full">
-                    Make me a cocktail
-                </button>
             </div>
         </section>
 
@@ -44,11 +45,9 @@
         <section id="mixing-instructions" class="col-span-2">
             <div class="mx-auto bg-gray-700 h-screen flex items-center justify-center px-8">
                 <div class="flex flex-col w-full bg-white rounded shadow-lg sm:w-3/4 md:w-1/2 lg:w-3/5">
-                    <div class="w-full h-64 bg-top bg-cover rounded-t"
-                        style="background-image: url(https://via.placeholder.com/90)"></div>
+                    <div class="w-full h-64 bg-top bg-cover rounded-t" style="background-image: url(https://via.placeholder.com/90)"></div>
                     <div class="flex flex-col w-full md:flex-row">
-                        <div
-                            class="flex flex-row justify-around p-4 font-bold leading-none text-gray-800 uppercase bg-gray-400 rounded md:flex-col md:items-center md:justify-center md:w-1/4">
+                        <div class="flex flex-row justify-around p-4 font-bold leading-none text-gray-800 uppercase bg-gray-400 rounded md:flex-col md:items-center md:justify-center md:w-1/4">
                             <div class="md:text-3xl">Ingredients</div>
                             <div class="md:text-xl">
                                 <ul>
@@ -62,15 +61,12 @@
                         <div class="p-4 font-normal text-gray-800 md:w-3/4">
                             <h1 class="mb-4 text-4xl font-bold leading-none tracking-tight text-gray-800">Method</h1>
                             <ul class="leading-normal">
-                                <li>1. Run lime wedge around the outer rims of 2 rocks glasses and dip rims in salt. Set
-                                    aside.</li>
+                                <li>1. Run lime wedge around the outer rims of 2 rocks glasses and dip rims in salt. Set aside.
+                                </li>
 
-                                <li> 2. In a cocktail shaker, combine tequila, Cointreau, and lime juice. Fill with ice
-                                    and shake until thoroughly chilled, about 15 seconds (the bottom of a metal shaker
-                                    should frost over).</li>
+                                <li> 2. In a cocktail shaker, combine tequila, Cointreau, and lime juice. Fill with ice and shake until thoroughly chilled, about 15 seconds (the bottom of a metal shaker should frost over).</li>
 
-                                <li>3. Fill glasses with fresh ice and strain margarita into both glasses. Garnish with
-                                    lime wheels and serve.</li>
+                                <li>3. Fill glasses with fresh ice and strain margarita into both glasses. Garnish with lime wheels and serve.</li>
                             </ul>
                             <div class="flex flex-row items-center mt-4 text-gray-700">
                                 <div class="w-1/2 md:text-xl font-bold">
@@ -95,43 +91,35 @@
                             </div>
                             <div class="flex items-center bg-gray-200 rounded-md">
                                 <div class="pl-2">
-                                    <svg class="fill-current text-gray-500 w-6 h-6" xmlns="http://www.w3.org/2000/svg"
-                                        viewBox="0 0 24 24">
+                                    <svg class="fill-current text-gray-500 w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                         <path class="heroicon-ui"
                                             d="M16.32 14.9l5.39 5.4a1 1 0 0 1-1.42 1.4l-5.38-5.38a8 8 0 1 1 1.41-1.41zM10 16a6 6 0 1 0 0-12 6 6 0 0 0 0 12z" />
                                     </svg>
                                 </div>
-                                <input
-                                    class="w-full rounded-md bg-gray-200 text-gray-700 leading-tight focus:outline-none py-2 px-2"
-                                    id="search" type="text" placeholder="Search">
+                                <input class="w-full rounded-md bg-gray-200 text-gray-700 leading-tight focus:outline-none py-2 px-2" id="search" type="text" placeholder="Search">
                             </div>
                             <div class="py-3 text-sm">
-                                <div
-                                    class="flex justify-start cursor-pointer text-gray-700 hover:text-blue-400 hover:bg-blue-100 rounded-md px-2 py-2 my-2">
+                                <div class="flex justify-start cursor-pointer text-gray-700 hover:text-blue-400 hover:bg-blue-100 rounded-md px-2 py-2 my-2">
                                     <span class="bg-gray-400 h-2 w-2 m-2 rounded-full"></span>
                                     <div class="flex-grow font-medium px-2">Tequila</div>
                                     <div class="text-sm font-normal text-gray-500 tracking-wide">Liquor</div>
                                 </div>
-                                <div
-                                    class="flex justify-start cursor-pointer text-gray-700 hover:text-blue-400 hover:bg-blue-100 rounded-md px-2 py-2 my-2">
+                                <div class="flex justify-start cursor-pointer text-gray-700 hover:text-blue-400 hover:bg-blue-100 rounded-md px-2 py-2 my-2">
                                     <span class="bg-green-400 h-2 w-2 m-2 rounded-full"></span>
                                     <div class="flex-grow font-medium px-2">Rum</div>
                                     <div class="text-sm font-normal text-gray-500 tracking-wide">Liquor</div>
                                 </div>
-                                <div
-                                    class="flex justify-start cursor-pointer text-gray-700 hover:text-blue-400 hover:bg-blue-100 rounded-md px-2 py-2 my-2">
+                                <div class="flex justify-start cursor-pointer text-gray-700 hover:text-blue-400 hover:bg-blue-100 rounded-md px-2 py-2 my-2">
                                     <span class="bg-gray-400 h-2 w-2 m-2 rounded-full"></span>
                                     <div class="flex-grow font-medium px-2">Whiskey</div>
                                     <div class="text-sm font-normal text-gray-500 tracking-wide">Liquor</div>
                                 </div>
-                                <div
-                                    class="flex justify-start cursor-pointer text-gray-700 hover:text-blue-400 hover:bg-blue-100 rounded-md px-2 py-2 my-2">
+                                <div class="flex justify-start cursor-pointer text-gray-700 hover:text-blue-400 hover:bg-blue-100 rounded-md px-2 py-2 my-2">
                                     <span class="bg-gray-400 h-2 w-2 m-2 rounded-full"></span>
                                     <div class="flex-grow font-medium px-2">Vodka</div>
                                     <div class="text-sm font-normal text-gray-500 tracking-wide">Liquor</div>
                                 </div>
-                                <div
-                                    class="flex justify-start cursor-pointer text-gray-700 hover:text-blue-400 hover:bg-blue-100 rounded-md px-2 py-2 my-2">
+                                <div class="flex justify-start cursor-pointer text-gray-700 hover:text-blue-400 hover:bg-blue-100 rounded-md px-2 py-2 my-2">
                                     <span class="bg-green-400 h-2 w-2 m-2 rounded-full"></span>
                                     <div class="flex-grow font-medium px-2">Cognac</div>
                                     <div class="text-sm font-normal text-gray-500 tracking-wide">Liquor</div>
@@ -154,8 +142,7 @@
     </main>
 
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
-        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
     <script src="./assets/js/app.js"></script>
 </body>
