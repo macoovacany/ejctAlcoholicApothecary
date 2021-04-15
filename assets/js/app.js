@@ -138,3 +138,9 @@ $addStockButton.addEventListener("click", () => {
     `);
 
 });
+$modalCancel.addEventListener("click", () => {
+
+});
+$modalOK.addEventListener("click", () => {
+
+});
