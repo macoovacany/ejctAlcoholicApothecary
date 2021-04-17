@@ -113,12 +113,15 @@ function suggestedCocktailLI(cocktail) {
 window.addEventListener('DOMContentLoaded', (e) => {
     getAPIIngredients();
 });
+
+
 $('.owl-carousel').owlCarousel({
     margin: 10,
-    loop: true,
-    autoWidth: true,
+    // loop: true,
+    // autoWidth: true,
+    width: "auto",
+    height: "100px",
     items: 4
-
 })
 $(".owl-carousel").owlCarousel();
 
@@ -135,15 +138,15 @@ const $modalList = document.querySelector("#modalList");
 const $modalItem = document.querySelector("#modalItem");
 const $modalSpan = document.querySelector("#modalSpan");
 $addStockButton.addEventListener("click", () => {
-    $addStockModal.removeClass("hidden");
-    $addStockModal.addClass("add-stock-modal");
-    $modalList.empty();
-    document.body.append(`
+$addStockModal.removeClass("hidden");
+$addStockModal.addClass("add-stock-modal");
+$modalList.empty();
+document.body.append(`
     <div class="modal-bg"></div>
     `);
-    const allIngredients = JSON.parse(localStorage.getItem("api-ingredients"));
-    allIngredients.forEach( (i) => {
-        $modalList.append(`
+const allIngredients = JSON.parse(localStorage.getItem("api-ingredients"));
+allIngredients.forEach((i) => {
+    $modalList.append(`
             <div
                 id="modalItem"
                 data-toggle="false"
@@ -152,25 +155,24 @@ $addStockButton.addEventListener("click", () => {
                 <div class="flex-grow font-medium px-2">${allIngredients[i]}</div>
             </div>
         `)
-    });
-    $modalItem.addEventListener("click", (e) => {
-        if (e.currentTarget.dataset.toggle === "true") {
-            e.currentTarget.removeClass("selected");
-            e.currentTarget.querySelector("#modalSpan").removeClass("spanSelected");
-            e.currentTarget.dataset.toggle = "false";
-        } else {
-            e.currentTarget.addClass("selected");
-            e.currentTarget.querySelector("#modalSpan").addClass("spanSelected");
-            e.currentTarget.dataset.toggle = "true";
-        };
-    });
-    $modalCancel.addEventListener("click", () => {
+});
+$modalItem.addEventListener("click", (e) => {
+    if (e.currentTarget.dataset.toggle === "true") {
+        e.currentTarget.removeClass("selected");
+        e.currentTarget.querySelector("#modalSpan").removeClass("spanSelected");
+        e.currentTarget.dataset.toggle = "false";
+    } else {
+        e.currentTarget.addClass("selected");
+        e.currentTarget.querySelector("#modalSpan").addClass("spanSelected");
+        e.currentTarget.dataset.toggle = "true";
+    };
+});
+$modalCancel.addEventListener("click", () => {
 
-    });
-    $modalOK.addEventListener("click", () => {
+});
+$modalOK.addEventListener("click", () => {
 
-    });
+});
 });
 
 })
-
