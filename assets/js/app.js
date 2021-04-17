@@ -125,15 +125,15 @@ const $modalList = document.querySelector("#modalList");
 const $modalItem = document.querySelector("#modalItem");
 const $modalSpan = document.querySelector("#modalSpan");
 $addStockButton.addEventListener("click", () => {
-$addStockModal.removeClass("hidden");
-$addStockModal.addClass("add-stock-modal");
-$modalList.empty();
-document.body.append(`
+    $addStockModal.removeClass("hidden");
+    $addStockModal.addClass("add-stock-modal");
+    $modalList.empty();
+    document.body.append(`
     <div class="modal-bg"></div>
     `);
-const allIngredients = JSON.parse(localStorage.getItem("api-ingredients"));
-allIngredients.forEach((i) => {
-    $modalList.append(`
+    const allIngredients = JSON.parse(localStorage.getItem("api-ingredients"));
+    allIngredients.forEach((i) => {
+        $modalList.append(`
             <div
                 id="modalItem"
                 data-toggle="false"
@@ -142,7 +142,10 @@ allIngredients.forEach((i) => {
                 <div class="flex-grow font-medium px-2">${allIngredients[i]}</div>
             </div>
         `)
+    });
 });
+
+
 $modalItem.addEventListener("click", (e) => {
     if (e.currentTarget.dataset.toggle === "true") {
         e.currentTarget.removeClass("selected");
@@ -154,12 +157,13 @@ $modalItem.addEventListener("click", (e) => {
         e.currentTarget.dataset.toggle = "true";
     };
 });
+
 $modalCancel.addEventListener("click", () => {
-
+    // TODO
 });
+
 $modalOK.addEventListener("click", () => {
-
+    // TODO
 });
-});
 
-})
+// end of file
