@@ -123,7 +123,6 @@ $('.owl-carousel').owlCarousel({
     height: "100px",
     items: 4
 })
-$(".owl-carousel").owlCarousel();
 
 // Adding stock to the available ingredients in local storage, using a modal which displays drink options on auto-complete
 // I need a function called when the button is pressed (an event listener is on the button), which renders a modal, and an opaque gray in the foreground, in the absolute center of the screen
