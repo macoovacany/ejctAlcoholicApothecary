@@ -1,5 +1,4 @@
-    .suggested-drinks-height {
-    height: 16rem;
+
     /* website  */
     .button {
         position: absolute;
@@ -28,7 +27,10 @@
         content: "🤚";
     }
     /* suggested-cocktails */
-    /* mixing-instructions */
+    .suggested-drinks-height {
+        height: 16rem;
+}
+/* mixing-instructions */
     /* add-drinks */
     .subtitle-js {
         font-size: 1.99vw;
