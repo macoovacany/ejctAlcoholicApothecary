@@ -33,6 +33,11 @@
 
 .ingredient-select[data-is-selected="true"]::after {
     content: "🤚";
+    align-content: center;
+}
+
+.ingredient-select[data-is-selected="false"]::after {
+    /* none */
 }
 
 
