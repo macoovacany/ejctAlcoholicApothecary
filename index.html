@@ -19,23 +19,18 @@
     <main class="app-wrapper grid grid-cols-2">
         <section id="available-drinks" class="flex space-x-4">
             <div class="stock-box">
-
                 <div class="flex justify-between">
                     <button class="bg-blue-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full" id="addStockButton">
                         Add some more drink stock!
                     </button>
-                    <button class="bg-blue-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full">
+                    <button class="bg-blue-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full" id="suggestCocktailsButton">
                         What cocktails can I make?
                     </button>
-
                 </div>
-
-
-
-                <div class="owl-carousel">
-                    <div class="ingredient-select" data-selected="true"> <img src="https://www.thecocktaildb.com/images/ingredients/gin-Small.png" alt="Gin"></div>
-                    <div class="ingredient-select"> <img src="https://www.thecocktaildb.com/images/ingredients/tequila-Small.png" alt="Tequila"></div>
-                    <div class="ingredient-select"> <img src="https://www.thecocktaildb.com/images/ingredients/vodka-Small.png" alt="Vodka"></div>
+                <div class="owl-carousel flex items-center" id="ingredients-selection-ui">
+                    <div class="ingredient-select" data-is-selected="true"> <img src="https://www.thecocktaildb.com/images/ingredients/gin-Small.png" alt="Gin"></div>
+                    <div class="ingredient-select" data-is-selected="false"> <img src="https://www.thecocktaildb.com/images/ingredients/tequila-Small.png" alt="Tequila"></div>
+                    <div class="ingredient-select" data-is-selected="false"> <img src="https://www.thecocktaildb.com/images/ingredients/vodka-Small.png" alt="Vodka"></div>
                 </div>
             </div>
             <div class="cocktail-box">
@@ -99,17 +94,15 @@
                                 <input class="w-full rounded-md bg-gray-200 text-gray-700 leading-tight focus:outline-none py-2 px-2" id="search" type="text" placeholder="Search">
                             </div>
 
-                            <div id="modalList"class="py-3 text-sm">
-                                <div
-                                    class="flex justify-start cursor-pointer text-gray-700 hover:text-blue-400 hover:bg-blue-100 rounded-md px-2 py-2 my-2">
+                            <div id="modalList" class="py-3 text-sm">
+                                <div class="flex justify-start cursor-pointer text-gray-700 hover:text-blue-400 hover:bg-blue-100 rounded-md px-2 py-2 my-2">
 
                                     <span class="bg-gray-400 h-2 w-2 m-2 rounded-full"></span>
                                     <div class="flex-grow font-medium px-2">Tequila</div>
                                     <div class="text-sm font-normal text-gray-500 tracking-wide">Liquor</div>
                                 </div>
 
-                                <div
-                                    class="flex justify-start cursor-pointer text-green-500 hover:text-green-700 hover:bg-blue-100 rounded-md px-2 py-2 my-2">
+                                <div class="flex justify-start cursor-pointer text-green-500 hover:text-green-700 hover:bg-blue-100 rounded-md px-2 py-2 my-2">
 
                                     <span class="bg-green-400 h-2 w-2 m-2 rounded-full"></span>
                                     <div class="flex-grow font-medium px-2">Rum</div>
