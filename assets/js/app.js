@@ -115,7 +115,10 @@ window.addEventListener('DOMContentLoaded', (e) => {
 });
 $('.owl-carousel').owlCarousel({
     margin: 10,
-    loop: true,
-    autoWidth: true,
+    // loop: true,
+    // autoWidth: true,
+    width: "auto",
+    height: "100px",
     items: 4
+
 })
