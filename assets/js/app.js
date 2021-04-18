@@ -48,7 +48,8 @@ $('#ingredients-selection-ui').on("click", (e) => {
 
 
 $('#suggestCocktailsButton').on("click", (e) => {
-    console.log("clicked the suggest a cocktail button");
+
+    fetchingDrinks();
 
     drinks = ["Vodka", "Gin", "Tequila"];
     let suggestedCocktailsURL = `https://www.thecocktaildb.com/api/json/v2/${API_KEY_COCKTAIL_DB}/filter.php?i=${drinks.join(',')}`
@@ -92,16 +93,22 @@ function suggestedCocktailTemplate(cocktail) {
 };
 
 function noSuggestedDrinks() {
-    let mt = {
+    let html = suggestedCocktailTemplate({
         strDrinkThumb: './assets/images/empty-bar.jpg',
         idDrink: "Nan",
         strDrink: "No cocktails suggested yet."
-    }
-    let html = suggestedCocktailTemplate(mt);
+    });
     $("#suggested-cocktails").html(`<ul>${html}</ul>`);
 };
 
-
+function fetchingDrinks() {
+    let html = suggestedCocktailTemplate({
+        strDrinkThumb: './assets/images/fetching-suggestions.gif',
+        idDrink: "Nan",
+        strDrink: "Please wait while we find some suggestions."
+    });
+    $("#suggested-cocktails").html(`<ul>${html}</ul>`);
+};
 
 
 $('.owl-carousel').owlCarousel({
