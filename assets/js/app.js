@@ -91,10 +91,17 @@ function suggestedCocktailTemplate(cocktail) {
     return html;
 };
 
+function noSuggestedDrinks() {
+    let mt = {
+        strDrinkThumb: './assets/images/empty-bar.jpg',
+        idDrink: "Nan",
+        strDrink: "No cocktails suggested yet."
+    }
+    let html = suggestedCocktailTemplate(mt);
+    $("#suggested-cocktails").html(`<ul>${html}</ul>`);
+};
 
-window.addEventListener('DOMContentLoaded', (e) => {
-    getAPIIngredients();
-});
+
 
 
 $('.owl-carousel').owlCarousel({
@@ -104,7 +111,7 @@ $('.owl-carousel').owlCarousel({
     width: "auto",
     height: "100px",
     items: 4
-})
+});
 
 // Adding stock to the available ingredients in local storage, using a modal which displays drink options on auto-complete
 // I need a function called when the button is pressed (an event listener is on the button), which renders a modal, and an opaque gray in the foreground, in the absolute center of the screen
@@ -130,13 +137,13 @@ $addStockButton.addEventListener("click", () => {
     const allIngredients = JSON.parse(localStorage.getItem("api-ingredients"));
     allIngredients.forEach((i) => {
         $modalList.append(`
-            <div
-                id="modalItem"
-                data-toggle="false"
-                class="flex justify-start cursor-pointer text-gray-700 hover:text-blue-400 hover:bg-blue-100 rounded-md px-2 py-2 my-2">
-                <span id="modalSpan" class="bg-gray-400 h-2 w-2 m-2 rounded-full"></span>
-                <div class="flex-grow font-medium px-2">${allIngredients[i]}</div>
-            </div>
+        <div
+        id="modalItem"
+        data-toggle="false"
+        class="flex justify-start cursor-pointer text-gray-700 hover:text-blue-400 hover:bg-blue-100 rounded-md px-2 py-2 my-2">
+        <span id="modalSpan" class="bg-gray-400 h-2 w-2 m-2 rounded-full"></span>
+        <div class="flex-grow font-medium px-2">${allIngredients[i]}</div>
+        </div>
         `)
     });
 });
@@ -166,4 +173,10 @@ $modalOK.addEventListener("click", () => {
     // TODO
 });
 
-// end of file
+
+// window loaded section
+
+window.addEventListener('DOMContentLoaded', (e) => {
+    getAPIIngredients();
+    noSuggestedDrinks();
+});
