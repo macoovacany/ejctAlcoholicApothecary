@@ -59,7 +59,7 @@ $('#suggestCocktailsButton').on("click", (e) => {
             // build the html list items from the drinks arrat
             html = '';
             data.drinks.forEach(drink => {
-                html = html + suggestedCocktailLI(drink);
+                html = html + suggestedCocktailTemplate(drink);
             });
             // update the DOM
             $("#suggested-cocktails").html(`<ul>${html}</ul>`);
@@ -67,7 +67,7 @@ $('#suggestCocktailsButton').on("click", (e) => {
 });
 
 
-function suggestedCocktailLI(cocktail) {
+function suggestedCocktailTemplate(cocktail) {
     html = `<li>
         <div class="w-full max-w-sm overflow-hidden rounded border bg-white shadow">
         <div class="relative">
@@ -91,10 +91,17 @@ function suggestedCocktailLI(cocktail) {
     return html;
 };
 
+function noSuggestedDrinks() {
+    let mt = {
+        strDrinkThumb: './assets/images/empty-bar.jpg',
+        idDrink: "Nan",
+        strDrink: "No cocktails suggested yet."
+    }
+    let html = suggestedCocktailTemplate(mt);
+    $("#suggested-cocktails").html(`<ul>${html}</ul>`);
+};
 
-window.addEventListener('DOMContentLoaded', (e) => {
-    getAPIIngredients();
-});
+
 
 
 $('.owl-carousel').owlCarousel({
@@ -104,7 +111,7 @@ $('.owl-carousel').owlCarousel({
     width: "auto",
     height: "100px",
     items: 4
-})
+});
 
 // Adding stock to the available ingredients in local storage, using a modal which displays drink options on auto-complete
 // I need a function called when the button is pressed (an event listener is on the button), which renders a modal, and an opaque gray in the foreground, in the absolute center of the screen
@@ -116,7 +123,7 @@ const $addStockModal = document.querySelector("#add-drinks");
 const $modalCancel = document.querySelector("#modalCancel");
 const $modalOK = document.querySelector("#modalOK");
 const $modalList = document.querySelector("#modalList");
-const $modalItem = document.querySelector("#modalItem");
+const $modalItem = document.querySelector("#modalItem"); // missing
 const $modalSpan = document.querySelector("#modalSpan");
 
 
@@ -130,17 +137,19 @@ $addStockButton.addEventListener("click", () => {
     const allIngredients = JSON.parse(localStorage.getItem("api-ingredients"));
     allIngredients.forEach((i) => {
         $modalList.append(`
-            <div
-                id="modalItem"
-                data-toggle="false"
-                class="flex justify-start cursor-pointer text-gray-700 hover:text-blue-400 hover:bg-blue-100 rounded-md px-2 py-2 my-2">
-                <span id="modalSpan" class="bg-gray-400 h-2 w-2 m-2 rounded-full"></span>
-                <div class="flex-grow font-medium px-2">${allIngredients[i]}</div>
-            </div>
+        <div
+        id="modalItem"
+        data-toggle="false"
+        class="flex justify-start cursor-pointer text-gray-700 hover:text-blue-400 hover:bg-blue-100 rounded-md px-2 py-2 my-2">
+        <span id="modalSpan" class="bg-gray-400 h-2 w-2 m-2 rounded-full"></span>
+        <div class="flex-grow font-medium px-2">${allIngredients[i]}</div>
+        </div>
         `)
     });
 });
 
+//  ***************************
+// modalItem is missing
 
 // $modalItem.addEventListener("click", (e) => {
 //     if (e.currentTarget.dataset.toggle === "true") {
@@ -154,12 +163,20 @@ $addStockButton.addEventListener("click", () => {
 //     };
 // });
 
-// $modalCancel.addEventListener("click", () => {
-//     // TODO
-// });
 
-// $modalOK.addEventListener("click", () => {
-//     // TODO
-// });
 
-// // end of file
+$modalCancel.addEventListener("click", () => {
+    // TODO
+});
+
+$modalOK.addEventListener("click", () => {
+    // TODO
+});
+
+
+// window loaded section
+
+window.addEventListener('DOMContentLoaded', (e) => {
+    getAPIIngredients();
+    noSuggestedDrinks();
+});
