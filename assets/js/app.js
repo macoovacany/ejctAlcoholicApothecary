@@ -35,22 +35,53 @@ function getAPIIngredients() {
 
 
 // ******************************************
-// Available Drinks section 
+// Available Ingredients section 
 // ******************************************
-
 $('#ingredients-selection-ui').on("click", (e) => {
-    console.log("clicked on an ingredient");
+    let clickedIngredient = e.target.parent;
+    let stockItem = {
+        ingredient: clickedIngredient.data.ingredient,
+        isSelected: clickedIngredient.data.isSelected
+    };
+    console.log("clicked on an ingredient" + e.target);
     // get the target of the click
-
     // toggle the data attribute of the ingredient
     // 
 });
 
+function updateCarosel(itemCount = 4) {
+    $('.owl-carousel').owlCarousel({
+        margin: 10,
+        loop: true,
+        autoWidth: true,
+        width: "auto",
+        height: "100px",
+        items: itemCount
+    });
+}
+
+
+function loadIngredientCarousel() {
+    let localIngredients = JSON.parse(localStorage.getItem('localIngredients'));
+    let html = '';
+    localIngredients.forEach(ing => {
+        //  TODO: get correct image from via API
+        html = html + ingredientsCarouselTemplate({ Name: ing, strDrinkThumb: "./assets/images/Generic-Empty-Bottle.jpg" });
+    });
+
+    $('#ingredients-carousel').html(html);
+
+}
+
+function ingredientsCarouselTemplate(ingredient) {
+    html = `<div class="ingredient-select" data-is-selected="false" data-ingredient="${ingredient.Name}">
+    <img src="${ingredient.strDrinkThumb}" alt="${ingredient.Name}">
+</div>`;
+    return html;
+}
 
 $('#suggestCocktailsButton').on("click", (e) => {
-
-    fetchingDrinks();
-
+    fetchingDrinks(); //update ui
     drinks = ["Vodka", "Gin", "Tequila"];
     let suggestedCocktailsURL = `https://www.thecocktaildb.com/api/json/v2/${API_KEY_COCKTAIL_DB}/filter.php?i=${drinks.join(',')}`
 
@@ -111,14 +142,6 @@ function fetchingDrinks() {
 };
 
 
-$('.owl-carousel').owlCarousel({
-    margin: 10,
-    // loop: true,
-    // autoWidth: true,
-    width: "auto",
-    height: "100px",
-    items: 4
-});
 
 // Adding stock to the available ingredients in local storage, using a modal which displays drink options on auto-complete
 // I need a function called when the button is pressed (an event listener is on the button), which renders a modal, and an opaque gray in the foreground, in the absolute center of the screen
@@ -181,9 +204,43 @@ $modalOK.addEventListener("click", () => {
 });
 
 
+
 // window loaded section
 
+function initLocalIngredients() {
+    if (!localStorage.getItem('localIngredients')) {
+        localStorage.setItem('localIngredients', JSON.stringify([]));
+    }
+};
+
+
+// TESTING load 10 random ingredients into localStorage()
+// https://stackoverflow.com/questions/19269545/how-to-get-a-number-of-random-elements-from-an-array
+
+function TEST_getRandomIngedientsIntoLocalStorage(n = 10) {
+    let APIingredients = JSON.parse(localStorage.getItem('api-ingredients'));
+    var result = new Array(n),
+        len = APIingredients.length,
+        taken = new Array(len);
+    if (n > len)
+        throw new RangeError("getRandom: more elements taken than available");
+    while (n--) {
+        var x = Math.floor(Math.random() * len);
+        result[n] = APIingredients[x in taken ? taken[x] : x];
+        taken[x] = --len in taken ? taken[len] : len;
+    }
+    localStorage.setItem('localIngredients', JSON.stringify(result));;
+};
+
+
+
+
+
 window.addEventListener('DOMContentLoaded', (e) => {
+    initLocalIngredients();
     getAPIIngredients();
+    TEST_getRandomIngedientsIntoLocalStorage(3);
+    loadIngredientCarousel();
+    updateCarosel(4);
     noSuggestedDrinks();
 });
