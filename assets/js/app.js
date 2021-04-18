@@ -59,7 +59,7 @@ $('#suggestCocktailsButton').on("click", (e) => {
             // build the html list items from the drinks arrat
             html = '';
             data.drinks.forEach(drink => {
-                html = html + suggestedCocktailLI(drink);
+                html = html + suggestedCocktailTemplate(drink);
             });
             // update the DOM
             $("#suggested-cocktails").html(`<ul>${html}</ul>`);
@@ -67,7 +67,7 @@ $('#suggestCocktailsButton').on("click", (e) => {
 });
 
 
-function suggestedCocktailLI(cocktail) {
+function suggestedCocktailTemplate(cocktail) {
     html = `<li>
         <div class="w-full max-w-sm overflow-hidden rounded border bg-white shadow">
         <div class="relative">
@@ -116,7 +116,7 @@ const $addStockModal = document.querySelector("#add-drinks");
 const $modalCancel = document.querySelector("#modalCancel");
 const $modalOK = document.querySelector("#modalOK");
 const $modalList = document.querySelector("#modalList");
-const $modalItem = document.querySelector("#modalItem");
+const $modalItem = document.querySelector("#modalItem"); // missing
 const $modalSpan = document.querySelector("#modalSpan");
 
 
@@ -141,6 +141,8 @@ $addStockButton.addEventListener("click", () => {
     });
 });
 
+//  ***************************
+// modalItem is missing
 
 // $modalItem.addEventListener("click", (e) => {
 //     if (e.currentTarget.dataset.toggle === "true") {
@@ -154,12 +156,14 @@ $addStockButton.addEventListener("click", () => {
 //     };
 // });
 
-// $modalCancel.addEventListener("click", () => {
-//     // TODO
-// });
 
-// $modalOK.addEventListener("click", () => {
-//     // TODO
-// });
 
-// // end of file
+$modalCancel.addEventListener("click", () => {
+    // TODO
+});
+
+$modalOK.addEventListener("click", () => {
+    // TODO
+});
+
+// end of file
