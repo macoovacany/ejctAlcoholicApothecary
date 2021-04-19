@@ -1,7 +1,7 @@
-
 .suggested-drinks-height {
     height: 16rem;
 }
+
 /* website  */
 
 .button {
@@ -11,13 +11,11 @@
 
 /* available-drinks */
 
-.owl-theme .owl-carousel .owl-page.active span {
-    background-color: red;
-    border: 2px solid red;
-}
+.owl-theme .owl-carousel .owl-page.active {}
 
-.owl-theme .owl-carousel .owl-page span {
-    border: 2px solid red;
+.owl-carousel .owl-stage {
+    height: 100px;
+    width: auto;
 }
 
 .ingredient-select {
@@ -26,16 +24,27 @@
 }
 
 .ingredient-select:hover {
+    background-color: red;
+    border: 2px solid red;
     width: 70px;
     height: 70px;
 }
 
-.ingredient-select[data-is-selected="true"]::after {
+.ingredient-select img [data-is-selected="true"]::after {
     content: "🤚";
+    align-content: center;
+}
+
+.ingredient-select img[data-is-selected="false"]::after {
+    /* none */
 }
 
 
 /* suggested-cocktails */
+
+.suggested-drinks-height {
+    height: 16rem;
+}
 
 
 /* mixing-instructions */
