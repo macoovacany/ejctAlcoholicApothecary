@@ -66,16 +66,17 @@ function loadIngredientCarousel() {
     let html = '';
     localIngredients.forEach(ing => {
         //  TODO: get correct image from via API
-        html = html + ingredientsCarouselTemplate({ Name: ing, strDrinkThumb: "./assets/images/Generic-Empty-Bottle.jpg" });
+        html = html + ingredientsCarouselTemplate(ing);
     });
 
     $('#ingredients-carousel').html(html);
 
 }
 
-function ingredientsCarouselTemplate(ingredient) {
-    html = `<div class="ingredient-select" data-is-selected="false" data-ingredient="${ingredient.Name}">
-    <img src="${ingredient.strDrinkThumb}" alt="${ingredient.Name}">
+function ingredientsCarouselTemplate(ing) {
+    let imgURL = `https://www.thecocktaildb.com/images/ingredients/${encodeURI(ing)}-Small.png`;
+    html = `<div class="ingredient-select" data-is-selected="false" data-ingredient="${ing}">
+    <img src="${imgURL}" alt="${ing}">
 </div>`;
     return html;
 }
@@ -270,7 +271,7 @@ function TEST_getRandomIngedientsIntoLocalStorage(n = 10) {
 window.addEventListener('DOMContentLoaded', (e) => {
     initLocalIngredients();
     getAPIIngredients();
-    TEST_getRandomIngedientsIntoLocalStorage(3);
+    TEST_getRandomIngedientsIntoLocalStorage(7);
     loadIngredientCarousel();
     updateCarosel(4);
     noSuggestedDrinks();
