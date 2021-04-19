@@ -173,6 +173,7 @@ $modalCancel.addEventListener("click", () => {
 });
 $modalOK.addEventListener("click", () => {
     // TODO
+    const localIngredients = [];
     $('[data-toggle=true]').find('span:last').each( (i, item) => localIngredients.push($(item).text()) )
     console.log(localIngredients);
     $addStockModal.classList.add("hidden");
