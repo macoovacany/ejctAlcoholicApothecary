@@ -163,7 +163,7 @@ $addStockButton.addEventListener("click", () => { // This will open modal on cli
     $addStockModal.classList.remove("hidden"); // This makes the modal visible
     console.log("Show modal");
     // $addStockModal.addClass("add-stock-modal"); // This will add a class ... forgot why this is here
-    $modalList.empty(); // Empties the modal list of the previous html
+    $modalList.children.remove(); // Empties the modal list of the previous html
     console.log("Empty list");
     // document.body.append(`
     // <div class="modal-bg"></div>
