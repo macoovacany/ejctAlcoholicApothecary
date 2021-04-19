@@ -206,6 +206,8 @@ $modalOK.addEventListener("click", () => {
     $('[data-toggle=true]').find('span:last').each( (i, item) => localIngredients.push($(item).text()) )
     console.log(localIngredients);
     localStorage.setItem("localIngredients", JSON.stringify(localIngredients))
+    $('.owl-carousel').trigger('destroy.owl.carousel')
+    loadIngredientCarousel()
     $addStockModal.classList.add("hidden");
 });
 // window loaded section
