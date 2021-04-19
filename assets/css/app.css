@@ -2,11 +2,12 @@
     height: 16rem;
 }
 
+
 /* website  */
 
 .button {
     position: absolute;
-} 
+}
 
 
 /* available-drinks */
@@ -19,24 +20,22 @@
 }
 
 .ingredient-select {
-    width: 50px;
-    height: 50px;
+    width: 100px;
+    height: 100px;
 }
 
 .ingredient-select:hover {
     background-color: red;
-    border: 2px solid red;
-    width: 70px;
-    height: 70px;
+    /* width: 70px;
+    height: 70px; */
 }
 
-.ingredient-select img [data-is-selected="true"]::after {
-    content: "🤚";
-    align-content: center;
+.ingredient-select[data-is-selected="true"] {
+    border: 2px solid black;
 }
 
-.ingredient-select img[data-is-selected="false"]::after {
-    /* none */
+.ingredient-select[data-is-selected="false"] {
+    border-style: none;
 }
 
 
