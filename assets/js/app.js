@@ -61,28 +61,33 @@ function updateCarousel(itemCount = 4) {
 function loadIngredientCarousel() {
     let localIngredients = JSON.parse(localStorage.getItem('localIngredients'));
     let html = '';
+    let owlSettings = {
+        margin: 10,
+        loop: false,
+        autoWidth: true,
+        width: "auto",
+        height: "100px"
+    };
+
+
     if (localIngredients.length === 0) {
         html = `<div class="owl-carousel flex items-center" id="ingredients-carousel">
         <div class="ingredient-select" data-is-selected="null" data-ingredient="undefined">
         <img src="./assets/images/empty-pantry.jpg" alt="No Ingredients Available" style="{position:absolute; height:100px; width:151px;} :hover {}">
         </div>`;
 
-        $('.owl-carousel').owlCarousel({
-            margin: 10,
-            loop: false,
-            autoWidth: true,
-            width: "auto",
-            height: "100px",
-            items: 1
-        });
+        owlSettings.items = 1;
 
     } else {
         localIngredients.forEach(ing => {
             html = html + ingredientsCarouselTemplate(ing);
         });
+
+        owlSettings.items = localIngredients.length;
     }
 
     $('#ingredients-carousel').html(html);
+    $('.owl-carousel').owlCarousel(owlSettings);
 
 }
 
@@ -253,7 +258,7 @@ function TEST_getRandomIngedientsIntoLocalStorage(n = 10) {
 window.addEventListener('DOMContentLoaded', (e) => {
     initLocalIngredients();
     getAPIIngredients();
-    // TEST_getRandomIngedientsIntoLocalStorage(7);
+    TEST_getRandomIngedientsIntoLocalStorage(7);
     loadIngredientCarousel();
     updateCarousel(4);
     noSuggestedDrinks();
