@@ -197,14 +197,15 @@ $(document.body).on("click", '.js-modal-item', (e) => {
     e.currentTarget.dataset.toggle = isSelected ? 'false' : 'true';
 });
 $modalCancel.addEventListener("click", () => {
-    // TODO
+    
     $addStockModal.classList.add("hidden");
 });
 $modalOK.addEventListener("click", () => {
-    // TODO
+    
     const localIngredients = [];
     $('[data-toggle=true]').find('span:last').each( (i, item) => localIngredients.push($(item).text()) )
     console.log(localIngredients);
+    localStorage.setItem("localIngredients", JSON.stringify(localIngredients))
     $addStockModal.classList.add("hidden");
 });
 // window loaded section
