@@ -163,12 +163,13 @@ $addStockButton.addEventListener("click", () => { // This will open modal on cli
     $addStockModal.classList.remove("hidden"); // This makes the modal visible
     console.log("Show modal");
     // $addStockModal.addClass("add-stock-modal"); // This will add a class ... forgot why this is here
-    $modalList.children.remove(); // Empties the modal list of the previous html
+    $modalItem.remove(); // Empties the modal list of the previous html
     console.log("Empty list");
     // document.body.append(`
     // <div class="modal-bg"></div>
     // `);
     const allIngredients = JSON.parse(localStorage.getItem("api-ingredients")); // Grabs a list of ingredients from local storage
+    console.log(allIngredients);
     allIngredients.forEach((i) => { // Creates a list item for each ingredient consecutively
         $modalList.append(` 
         <div
