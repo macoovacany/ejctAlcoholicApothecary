@@ -1,5 +1,15 @@
-.suggested-drinks-height {
+/* .suggested-drinks-height {
     height: 16rem;
+} */
+
+.max-w-sm {
+    max-width: 89rem;
+    align-content: center;
+    text-align: center
+}
+
+.suggested-cocktail-height {
+    height: 45rem;
 }
 
 
@@ -41,9 +51,9 @@
 
 /* suggested-cocktails */
 
-.suggested-drinks-height {
+/* .suggested-drinks-height {
     height: 16rem;
-}
+} */
 
 
 /* mixing-instructions */
@@ -77,14 +87,14 @@
 }
 
 .md\:text-xl {
-    color: blue;
+    color: dodgerblue;
     font-size: 1.25rem;
     margin-block: auto;
     transform: rotateY( 45deg);
 }
 
 .md\:w-3\/4 {
-    width: 75%;
+    width: 100%;
     background: skyblue;
 }
 
