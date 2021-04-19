@@ -32,8 +32,11 @@ function getAPIIngredients() {
 $('#ingredients-carousel').on("click", (e) => {
     let clickedIngredient = e.target.parentNode;
 
-    let isSelected = JSON.parse(clickedIngredient.dataset.isSelected);
-    clickedIngredient.dataset.isSelected = (!isSelected).toString();
+    if ('isSelected' in clickedIngredient.dataset) {
+        let isSelected = JSON.parse(clickedIngredient.dataset.isSelected);
+        clickedIngredient.dataset.isSelected = (!isSelected).toString();
+    }
+
 })
 
 function updateCarousel(itemCount = 4) {
@@ -53,10 +56,11 @@ function loadIngredientCarousel() {
 
     let owlSettings = {
         margin: 10,
-        loop: false,
+        loop: true,
         autoWidth: true,
         width: "auto",
-        height: "100px"
+        height: "100px",
+
     };
 
 
@@ -66,6 +70,7 @@ function loadIngredientCarousel() {
         <img src="./assets/images/empty-pantry.jpg" alt="No Ingredients Available" title="No Ingredients Available">
         </div>`;
 
+        owlSettings.loop = false;
         owlSettings.items = 1;
 
     } else {
@@ -86,6 +91,7 @@ function loadIngredientCarousel() {
 
 
 $('#suggestCocktailsButton').on("click", (e) => {
+    $('#suggestedCocktails').removeClass('hidden');
     fetchingDrinks(); //update ui
 
     // test case:
@@ -123,25 +129,19 @@ $('#suggestCocktailsButton').on("click", (e) => {
 });
 
 function suggestedCocktailTemplate(cocktail) {
-    html = `<li>
-        <div class="w-full max-w-sm overflow-hidden rounded border bg-white shadow">
-        <div class="relative">
-        <div class="suggested-cocktail-height bg-cover bg-no-repeat bg-center" style="background-image: url(${cocktail.strDrinkThumb}"></div>
-        <div style="background-color: rgba(0,0,0,0.6)"></div>
-        <div style="bottom: -20px;" class="right-0 w-10 mr-2">
-        <img class="rounded-full border-2 border-white">
+    html = `
+<li>
+    <div class="w-full max-w-sm overflow-hidden rounded border bg-white shadow">
+        <div class="relative" data-cocktail-id="${cocktail.idDrink}">
+            <div class="suggested-cocktail-height bg-cover bg-no-repeat bg-center" style="background-image: url(${cocktail.strDrinkThumb}"></div>
+            <div style="background-color: rgba(0,0,0,0.6)"></div>
+            <div style="bottom: -20px;" class="right-0 w-10 mr-2">
+                <img class="rounded-full border-2 border-white">
+            </div>
+            <h3 class=" p-4mr-10 text-sm truncate-2nd hover:text-blue-500"> ${cocktail.strDrink} </h3>
         </div>
-        <div class="p-4" data-cocktail-id="${cocktail.idDrink}">
-        <h3 class="mr-10 text-sm truncate-2nd">
-        <a class="hover:text-blue-500" href="#">${cocktail.strDrink}</a>
-        </h3>
-        <p class="text-xs text-gray-500">
-        <a href="#" class="hover:underline hover:text-blue-500"></a>
-        </p>
-        </div>
-        </div>
-        </div>
-        </li>
+    </div>
+</li>
         `
     return html;
 };
@@ -258,6 +258,73 @@ function TEST_getRandomIngedientsIntoLocalStorage(n = 10) {
     }
     localStorage.setItem('localIngredients', JSON.stringify(result));;
 };
+
+
+// update the ingredients html when the user clicks on the cocktail in suggested-cocktails
+$('#suggested-cocktails').on('click', (e) => {
+    console.log(e);
+    // happy path??
+
+    drinkID = e.target.parentNode.dataset.cocktailId;
+
+    $('#suggested-cocktails').addClass("hidden");
+
+    let cocktailsIDURL = `https://www.thecocktaildb.com/api/json/v2/${API_KEY_COCKTAIL_DB}/lookup.php?i=${drinkID}`;
+    fetch(cocktailsIDURL)
+        .then(response => response.json())
+        .then(data => {
+            cocktail = data.drinks[0];
+
+            $('#mixing-instructions').html(mixingInstructionsTemplate(cocktail));
+            $('#mixing-instructions').removeClass('hidden');
+        })
+});
+
+
+function mixingInstructionsTemplate(cocktail) {
+
+    i = 1;
+    ingHTML = '';
+
+    while (cocktail[`strIngredient${i}`] != null) {
+        ingAndMeasure = cocktail[`strMeasure${i}`] + ' of ' + cocktail[`strIngredient${i}`];
+        ingHTML = ingHTML + `<li>${ingAndMeasure } </li>`;
+        i++; // very important
+    }
+
+    return `    <div class="mx-auto bg-gray-700 h-screen flex items-center justify-center px-8">
+    <div class="flex flex-col w-full bg-white rounded shadow-lg sm:w-1/2 md:w-3/4 lg:w-full">
+        <div class="w-full h-64 bg-top bg-cover rounded-t" style="background-image: url(${cocktail.strDrinkThumb})"></div>
+        <div class="flex flex-col w-full md:flex-row">
+            <div class="flex flex-row justify-around p-4 font-bold leading-none text-gray-800 uppercase bg-gray-400 rounded md:flex-col md:items-center md:justify-center md:w-1/4">
+                <div class="subtitle-js">Ingredients</div>
+                <div class="md:text-xl">
+                    <ul id="cocktail-ingredients">
+                  ${ingHTML}  
+                    </ul>
+                </div>
+
+            </div>
+            <div class="p-4 font-normal text-gray-800 md:w-3/4">
+                <h1 class="mb-4 text-4xl font-bold leading-none tracking-tight text-gray-800">Method</h1>
+                <p>${cocktail.strDrink}</p>
+                <p class="leading-normal">
+                  ${cocktail.strInstructions}                </p>
+                <div class="flex flex-row items-center mt-4 text-gray-700">
+                    <div class="w-1/2 md:text-xl font-bold">
+                        Enjoy your homemade cocktail!!
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+`
+}
+
+
+
+
 
 window.addEventListener('DOMContentLoaded', (e) => {
     // can assumme that this local storage always exists, but may be empty
