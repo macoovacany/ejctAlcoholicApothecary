@@ -31,6 +31,7 @@ function getAPIIngredients() {
 
 $('#ingredients-carousel').on("click", (e) => {
     let clickedIngredient = e.target.parentNode;
+
     let isSelected = JSON.parse(clickedIngredient.dataset.isSelected);
     clickedIngredient.dataset.isSelected = (!isSelected).toString();
 })
@@ -61,8 +62,8 @@ function loadIngredientCarousel() {
 
     if (localIngredients.length === 0) {
         html = `<div class="owl-carousel flex items-center" id="ingredients-carousel">
-        <div class="ingredient-select" data-is-selected="null" data-ingredient="undefined">
-        <img src="./assets/images/empty-pantry.jpg" alt="No Ingredients Available" title="No Ingredients Available" style="{position:absolute; height:100px; width:151px;} :hover {}">
+        <div class="ingredient-select" data-is-selected="null" data-ingredient="undefined" width="151px">
+        <img src="./assets/images/empty-pantry.jpg" alt="No Ingredients Available" title="No Ingredients Available">
         </div>`;
 
         owlSettings.items = 1;
@@ -185,18 +186,18 @@ const $modalOK = document.querySelector("#modalOK"); // Button in modal labelled
 const $modalList = document.querySelector("#modalList"); // Scrollable list of ingredients
 const $modalSpan = document.querySelector("#modalSpan"); // Small circle on each line, cosmetically indicates selection
 $addStockButton.addEventListener("click", () => { // This will open modal on click
-    console.log("Clicked 'Add more drink stock' ");
+    // console.log("Clicked 'Add more drink stock' ");
     $addStockModal.classList.remove("hidden"); // This makes the modal visible
-    console.log("Show modal");
+    // console.log("Show modal");
     // $addStockModal.addClass("add-stock-modal"); // This will add a class ... forgot why this is here
     $modalList.innerHTML = ''; // Empties the modal list of the previous html
-    console.log("Empty list");
+    // console.log("Empty list");
     $modalList.classList.add("overflow-auto", "h-64")
     $(document.body).append(`
     <div class="modal-bg"></div>
     `);
     const allIngredients = JSON.parse(localStorage.getItem("api-ingredients")); // Grabs a list of ingredients from local storage
-    console.log(allIngredients);
+    // console.log(allIngredients);
     allIngredients.forEach((ingredient) => { // Creates a list item for each ingredient consecutively
         $modalList.innerHTML += `
         <div
@@ -207,7 +208,7 @@ $addStockButton.addEventListener("click", () => { // This will open modal on cli
         </div>
         `; // Html element appended to the list
     });
-    console.log("Make list of ingredients");
+    // console.log("Make list of ingredients");
 });
 
 $(document.body).on("click", '.js-modal-item', (e) => {
@@ -226,20 +227,21 @@ $modalCancel.addEventListener("click", () => {
 });
 $modalOK.addEventListener("click", () => {
 
-    const localIngredients = [];
+    // new set of ingredients every time
+    // let localIngredients = [];
+
+    // remeber previous options
+    let localIngredients = JSON.parse(localStorage.getItem("localIngredients"));
+
     $('[data-toggle=true]').find('span:last').each((i, item) => localIngredients.push($(item).text()))
-    console.log(localIngredients);
+        // console.log(localIngredients);
     localStorage.setItem("localIngredients", JSON.stringify(localIngredients))
     $('.owl-carousel').trigger('destroy.owl.carousel')
     loadIngredientCarousel()
     $addStockModal.classList.add("hidden");
 });
-// window loaded section
-function initLocalIngredients() {
-    if (!localStorage.getItem('localIngredients')) {
-        localStorage.setItem('localIngredients', JSON.stringify([]));
-    }
-};
+
+
 // TESTING load 10 random ingredients into localStorage()
 // https://stackoverflow.com/questions/19269545/how-to-get-a-number-of-random-elements-from-an-array
 function TEST_getRandomIngedientsIntoLocalStorage(n = 10) {
@@ -258,9 +260,13 @@ function TEST_getRandomIngedientsIntoLocalStorage(n = 10) {
 };
 
 window.addEventListener('DOMContentLoaded', (e) => {
-    initLocalIngredients();
+    // can assumme that this local storage always exists, but may be empty
+    if (!localStorage.getItem('localIngredients')) {
+        localStorage.setItem('localIngredients', JSON.stringify([]));
+    }
+
     getAPIIngredients();
-    TEST_getRandomIngedientsIntoLocalStorage(7);
+    // TEST_getRandomIngedientsIntoLocalStorage(7);
     loadIngredientCarousel();
     updateCarousel(4);
     noSuggestedDrinks();
