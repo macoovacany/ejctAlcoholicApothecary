@@ -167,25 +167,30 @@ function fetchingDrinks() {
 // Event listeners for the entire scrollable, searchable menu, when clicked is toggled to enter the modalLocalIngredients array, and to toggle the appearance of the selected items
 // If cancel is pressed then the modal disappears without making any changes to localIngredients
 // If OK is pressed then the modal disappears and the changes are returned to localIngredients
-const $addStockButton = document.querySelector("#addStockButton");
-const $addStockModal = document.querySelector("#add-drinks");
-const $modalCancel = document.querySelector("#modalCancel");
-const $modalOK = document.querySelector("#modalOK");
-const $modalList = document.querySelector("#modalList");
-const $modalItem = document.querySelector("#modalItem"); // missing
-const $modalSpan = document.querySelector("#modalSpan");
+
+const $addStockButton = document.querySelector("#addStockButton"); // Button labelled 'Add more drink stock'
+const $addStockModal = document.querySelector("#add-drinks"); // Section which is modal
+const $modalCancel = document.querySelector("#modalCancel"); // Button in modal labelled 'Cancel'
+const $modalOK = document.querySelector("#modalOK"); // Button in modal labelled 'Add to Bar Stock'
+const $modalList = document.querySelector("#modalList"); // Scrollable list of ingredients
+const $modalItem = document.querySelector("#modalItem"); // Individual selectable item in item list // missing
+const $modalSpan = document.querySelector("#modalSpan"); // Small circle on each line, cosmetically indicates selection
 
 
-$addStockButton.addEventListener("click", () => {
-    $addStockModal.removeClass("hidden");
-    $addStockModal.addClass("add-stock-modal");
-    $modalList.empty();
-    document.body.append(`
-    <div class="modal-bg"></div>
-    `);
-    const allIngredients = JSON.parse(localStorage.getItem("api-ingredients"));
-    allIngredients.forEach((i) => {
-        $modalList.append(`
+$addStockButton.addEventListener("click", () => { // This will open modal on click
+    console.log("Clicked 'Add more drink stock' ");
+    $addStockModal.classList.remove("hidden"); // This makes the modal visible
+    console.log("Show modal");
+    // $addStockModal.addClass("add-stock-modal"); // This will add a class ... forgot why this is here
+    $modalItem.remove(); // Empties the modal list of the previous html
+    console.log("Empty list");
+    // document.body.append(`
+    // <div class="modal-bg"></div>
+    // `);
+    const allIngredients = JSON.parse(localStorage.getItem("api-ingredients")); // Grabs a list of ingredients from local storage
+    console.log(allIngredients);
+    allIngredients.forEach((i) => { // Creates a list item for each ingredient consecutively
+        $modalList.append(` 
         <div
         id="modalItem"
         data-toggle="false"
@@ -193,10 +198,36 @@ $addStockButton.addEventListener("click", () => {
         <span id="modalSpan" class="bg-gray-400 h-2 w-2 m-2 rounded-full"></span>
         <div class="flex-grow font-medium px-2">${allIngredients[i]}</div>
         </div>
-        `)
+        `) // Html element appended to the list
     });
+    console.log("Make list of ingredients");
 });
+// w3 insert 181-205
+// // Get the modal
+// var modal = document.getElementById("myModal");
 
+// // Get the button that opens the modal
+// var btn = document.getElementById("myBtn");
+
+// // Get the <span> element that closes the modal
+// var span = document.getElementsByClassName("close")[0];
+
+// // When the user clicks on the button, open the modal
+// btn.onclick = function() {
+//   modal.style.display = "block";
+// }
+
+// // When the user clicks on <span> (x), close the modal
+// span.onclick = function() {
+//   modal.style.display = "none";
+// }
+
+// // When the user clicks anywhere outside of the modal, close it
+// window.onclick = function(event) {
+//   if (event.target == modal) {
+//     modal.style.display = "none";
+//   }
+// }
 //  ***************************
 // modalItem is missing
 
