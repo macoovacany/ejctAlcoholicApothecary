@@ -2,6 +2,7 @@
 // constants
 // ******************************************
 const API_KEY_COCKTAIL_DB = 9973533;
+
 // API call to get cocktail ingredients
 function getCocktailDetailsbyID(cocktailID) {
     fetch(`https://www.thecocktaildb.com/api/json/v2/${API_KEY_COCKTAIL_DB}/lookup.php?i=${cocktailID}`)
@@ -9,7 +10,7 @@ function getCocktailDetailsbyID(cocktailID) {
         .then(data => console.log(data));
 }
 // getCocktailDetailsbyID(11007)
-//
+
 // get list of available ingredients
 // includes non-alocholic stuff
 function getAPIIngredients() {
@@ -39,7 +40,10 @@ $('#ingredients-selection-ui').on("click", (e) => {
     // toggle the data attribute of the ingredient
     //
 });
-function updateCarosel(itemCount = 4) {
+
+
+function updateCarousel(itemCount = 4) {
+
     $('.owl-carousel').owlCarousel({
         margin: 10,
         loop: true,
@@ -52,11 +56,36 @@ function updateCarosel(itemCount = 4) {
 function loadIngredientCarousel() {
     let localIngredients = JSON.parse(localStorage.getItem('localIngredients'));
     let html = '';
-    localIngredients.forEach(ing => {
-        //  TODO: get correct image from via API
-        html = html + ingredientsCarouselTemplate(ing);
-    });
+
+    let owlSettings = {
+        margin: 10,
+        loop: false,
+        autoWidth: true,
+        width: "auto",
+        height: "100px"
+    };
+
+
+    if (localIngredients.length === 0) {
+        html = `<div class="owl-carousel flex items-center" id="ingredients-carousel">
+        <div class="ingredient-select" data-is-selected="null" data-ingredient="undefined">
+        <img src="./assets/images/empty-pantry.jpg" alt="No Ingredients Available" style="{position:absolute; height:100px; width:151px;} :hover {}">
+        </div>`;
+
+        owlSettings.items = 1;
+
+    } else {
+        localIngredients.forEach(ing => {
+            html = html + ingredientsCarouselTemplate(ing);
+        });
+
+        owlSettings.items = localIngredients.length;
+    }
+
     $('#ingredients-carousel').html(html);
+    $('.owl-carousel').owlCarousel(owlSettings);
+
+
 }
 function ingredientsCarouselTemplate(ing) {
     let imgURL = `https://www.thecocktaildb.com/images/ingredients/${encodeURI(ing)}-Small.png`;
@@ -205,6 +234,6 @@ window.addEventListener('DOMContentLoaded', (e) => {
     getAPIIngredients();
     TEST_getRandomIngedientsIntoLocalStorage(7);
     loadIngredientCarousel();
-    updateCarosel(4);
+    updateCarousel(4);
     noSuggestedDrinks();
 });
