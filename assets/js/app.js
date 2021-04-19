@@ -20,7 +20,6 @@ function getAPIIngredients() {
     // check if the api ingredients are already saved into local storage
     if (localStorage.getItem('api-ingredients') === null) {
         fetch(`https://www.thecocktaildb.com/api/json/v2/${API_KEY_COCKTAIL_DB}/list.php?i=list`)
-            // .then(response => console.log(response));
             .then(response => response.json())
             .then(data => {
                 // 
@@ -34,16 +33,15 @@ function getAPIIngredients() {
 // ******************************************
 // Available Ingredients section 
 // ******************************************
-$('#ingredients-selection-ui').on("click", (e) => {
-    let clickedIngredient = e.target.parent;
-    let stockItem = {
-        ingredient: clickedIngredient.data.ingredient,
-        isSelected: clickedIngredient.data.isSelected
-    };
-    console.log("clicked on an ingredient" + e.target);
-    // get the target of the click
-    // toggle the data attribute of the ingredient
-    // 
+var temp;
+$('#ingredients-carousel').on("click", (e) => {
+    console.log(e);
+    let clickedIngredient = e.target.parentNode;
+
+    let isSelected = JSON.parse(clickedIngredient.dataset.isSelected);
+
+
+    clickedIngredient.dataset.isSelected = (!isSelected).toString();
 });
 
 function updateCarousel(itemCount = 4) {
