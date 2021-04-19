@@ -162,7 +162,7 @@ $addStockButton.addEventListener("click", () => {
     $addStockModal.addClass("add-stock-modal");
     $modalList.empty();
     document.body.append(`
-    <div class="modal-bg"></div>
+    <div class="close"></div>
     `);
     const allIngredients = JSON.parse(localStorage.getItem("api-ingredients"));
     allIngredients.forEach((i) => {
