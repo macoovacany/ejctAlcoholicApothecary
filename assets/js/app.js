@@ -30,15 +30,12 @@ function getAPIIngredients() {
 // ******************************************
 
 $('#ingredients-carousel').on("click", (e) => {
-    console.log(e);
     let clickedIngredient = e.target.parentNode;
-
     let isSelected = JSON.parse(clickedIngredient.dataset.isSelected);
     clickedIngredient.dataset.isSelected = (!isSelected).toString();
 })
 
 function updateCarousel(itemCount = 4) {
-
     $('.owl-carousel').owlCarousel({
         margin: 10,
         loop: true,
@@ -65,14 +62,18 @@ function loadIngredientCarousel() {
     if (localIngredients.length === 0) {
         html = `<div class="owl-carousel flex items-center" id="ingredients-carousel">
         <div class="ingredient-select" data-is-selected="null" data-ingredient="undefined">
-        <img src="./assets/images/empty-pantry.jpg" alt="No Ingredients Available" style="{position:absolute; height:100px; width:151px;} :hover {}">
+        <img src="./assets/images/empty-pantry.jpg" alt="No Ingredients Available" title="No Ingredients Available" style="{position:absolute; height:100px; width:151px;} :hover {}">
         </div>`;
 
         owlSettings.items = 1;
 
     } else {
         localIngredients.forEach(ing => {
-            html = html + ingredientsCarouselTemplate(ing);
+            let imgURL = `https://www.thecocktaildb.com/images/ingredients/${encodeURI(ing)}-Small.png`;
+            moreHtml = `<div class="ingredient-select" data-is-selected="false" data-ingredient="${ing}">
+            <img src="${imgURL}" alt="${ing}" title="${ing}">
+            </div>`;
+            html = html + moreHtml;
         });
 
         owlSettings.items = localIngredients.length;
@@ -80,32 +81,44 @@ function loadIngredientCarousel() {
 
     $('#ingredients-carousel').html(html);
     $('.owl-carousel').owlCarousel(owlSettings);
-
-
 }
 
-function ingredientsCarouselTemplate(ing) {
-    let imgURL = `https://www.thecocktaildb.com/images/ingredients/${encodeURI(ing)}-Small.png`;
-    html = `<div class="ingredient-select" data-is-selected="false" data-ingredient="${ing}">
-    <img src="${imgURL}" alt="${ing}">
-</div>`;
-    return html;
-}
+
 $('#suggestCocktailsButton').on("click", (e) => {
     fetchingDrinks(); //update ui
-    drinks = ["Vodka", "Gin", "Tequila"];
-    let suggestedCocktailsURL = `https://www.thecocktaildb.com/api/json/v2/${API_KEY_COCKTAIL_DB}/filter.php?i=${drinks.join(',')}`
-    fetch(suggestedCocktailsURL)
-        .then(response => response.json())
-        .then(data => {
-            // build the html list items from the drinks arrat
-            html = '';
-            data.drinks.forEach(drink => {
-                html = html + suggestedCocktailTemplate(drink);
-            });
-            // update the DOM
-            $("#suggested-cocktails").html(`<ul>${html}</ul>`);
-        })
+
+    // test case:
+    // drinks = ["Vodka", "Gin", "Tequila"];
+    let drinks = [];
+
+    $('.ingredient-select').each((i) => {
+        if (JSON.parse($('.ingredient-select')[i].dataset.isSelected)) {
+            drinks.push($('.ingredient-select')[i].dataset.ingredient);
+        };
+    });
+
+    // update the suggested drinks menu
+    if (drinks.length === 0) {
+        // alert('Please Choose some drinks');
+    } else {
+        let suggestedCocktailsURL = `https://www.thecocktaildb.com/api/json/v2/${API_KEY_COCKTAIL_DB}/filter.php?i=${drinks.join(',')}`;
+        fetch(suggestedCocktailsURL)
+            .then(response => response.json())
+            .then(data => {
+                // build the html list items from the drinks arrat
+                if (data.drinks === "None Found") {
+                    noCocktailsFound();
+
+                } else {
+                    html = '';
+                    data.drinks.forEach(drink => {
+                        html = html + suggestedCocktailTemplate(drink);
+                    });
+                    // update the DOM
+                    $("#suggested-cocktails").html(`<ul>${html}</ul>`);
+                }
+            })
+    }
 });
 
 function suggestedCocktailTemplate(cocktail) {
@@ -116,19 +129,19 @@ function suggestedCocktailTemplate(cocktail) {
         <div style="background-color: rgba(0,0,0,0.6)"></div>
         <div style="bottom: -20px;" class="right-0 w-10 mr-2">
         <img class="rounded-full border-2 border-white">
-            </div>
-            <div class="p-4" data-cocktail-id="${cocktail.idDrink}">
-            <h3 class="mr-10 text-sm truncate-2nd">
-                <a class="hover:text-blue-500" href="#">${cocktail.strDrink}</a>
-            </h3>
-            <p class="text-xs text-gray-500">
-                <a href="#" class="hover:underline hover:text-blue-500"></a>
-            </p>
         </div>
-    </div>
-    </div>
-    </li>
-    `
+        <div class="p-4" data-cocktail-id="${cocktail.idDrink}">
+        <h3 class="mr-10 text-sm truncate-2nd">
+        <a class="hover:text-blue-500" href="#">${cocktail.strDrink}</a>
+        </h3>
+        <p class="text-xs text-gray-500">
+        <a href="#" class="hover:underline hover:text-blue-500"></a>
+        </p>
+        </div>
+        </div>
+        </div>
+        </li>
+        `
     return html;
 };
 
@@ -149,6 +162,17 @@ function fetchingDrinks() {
     });
     $("#suggested-cocktails").html(`<ul>${html}</ul>`);
 };
+
+function noCocktailsFound() {
+    let html = suggestedCocktailTemplate({
+        strDrinkThumb: "./assets/images/no-cocktails-found.jpg",
+        idDrink: NaN,
+        strDrink: "Sorry, can't make anything with those ingredients"
+    });
+    $("#suggested-cocktails").html(`<ul>${html}</ul>`);
+};
+
+
 // Adding stock to the available ingredients in local storage, using a modal which displays drink options on auto-complete
 // I need a function called when the button is pressed (an event listener is on the button), which renders a modal, and an opaque gray in the foreground, in the absolute center of the screen
 // Event listeners for the entire scrollable, searchable menu, when clicked is toggled to enter the modalLocalIngredients array, and to toggle the appearance of the selected items
