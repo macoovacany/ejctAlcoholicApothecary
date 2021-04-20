@@ -37,7 +37,7 @@ $('#ingredients-carousel').on("click", (e) => {
 
 
             clickedIngredient.dataset.isSelected = (!isSelected).toString();
-        }
+        });
 
 
         function updateCarousel(itemCount = 4) {
