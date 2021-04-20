@@ -49,10 +49,7 @@ function updateCarousel(itemCount = 4) {
         items: itemCount
     });
 }
-
-
-            clickedIngredient.dataset.isSelected = (!isSelected).toString();
-        });
+        
 
 function loadIngredientCarousel() {
     let localIngredients = JSON.parse(localStorage.getItem('localIngredients'));
