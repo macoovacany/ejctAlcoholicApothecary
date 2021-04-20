@@ -27,6 +27,9 @@
 .owl-carousel .owl-stage {
     height: 100px;
     width: auto;
+    margin: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .ingredient-select {

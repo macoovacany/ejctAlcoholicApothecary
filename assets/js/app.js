@@ -67,7 +67,7 @@ function loadIngredientCarousel() {
 
 
     if (localIngredients.length === 0) {
-        html = `<div class="owl-carousel flex items-center" id="ingredients-carousel">
+        html = `<div class="owl-carousel flex items-center mx-10" id="ingredients-carousel">
         <div class="ingredient-select" data-is-selected="null" data-ingredient="undefined" width="151px">
         <img src="./assets/images/empty-pantry.jpg" alt="No Ingredients Available" title="No Ingredients Available">
         </div>`;
