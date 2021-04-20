@@ -23,58 +23,25 @@
                     <button class="bg-blue-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full" id="addStockButton">
                         Add some more drink stock!
                     </button>
+                </div>
+                <div class="owl-carousel flex items-center z-5" id="ingredients-carousel">
+                </div>
+                <div class="flex justify-between">
                     <button class="bg-blue-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full" id="suggestCocktailsButton">
                         What cocktails can I make?
                     </button>
                 </div>
-                <div class="owl-carousel flex items-center" id="ingredients-carousel">
-                </div>
             </div>
-            </div>
-            <div class="cocktail-box">
             </div>
         </section>
 
         <section id="suggested-cocktails" class="max-h-4 inset-y- right-0 overflow-y-auto suggested-drinks-height border-4 border-indigo-800 p-3"> </section>
 
         <section id="mixing-instructions" class="col-span-2">
-            <div class="mx-auto bg-gray-700 h-screen flex items-center justify-center px-8">
-                <div class="flex flex-col w-full bg-white rounded shadow-lg sm:w-1/2 md:w-3/4 lg:w-full">
-                    <div class="w-full h-64 bg-top bg-cover rounded-t" style="background-image: url(https://www.thecocktaildb.com/images/media/drink/5noda61589575158.jpg)"></div>
-                    <div class="flex flex-col w-full md:flex-row">
-                        <div class="flex flex-row justify-around p-4 font-bold leading-none text-gray-800 uppercase bg-gray-400 rounded md:flex-col md:items-center md:justify-center md:w-1/4">
-                            <div class="subtitle-js">Ingredients</div>
-                            <div class="md:text-xl">
-                                <ul>
-                                    <li>Tequila</li>
-                                    <li>Triple Sec</li>
-                                    <li>Lime Juice </li>
-                                </ul>
-                            </div>
-
-                        </div>
-                        <div class="p-4 font-normal text-gray-800 md:w-3/4">
-                            <h1 class="mb-4 text-4xl font-bold leading-none tracking-tight text-gray-800">Method</h1>
-                            <p>Margarita</p>
-                            <ul class="leading-normal">
-                                <li>1. Run lime wedge around the outer rims of 2 rocks glasses and dip rims in salt. Set aside.
-                                </li>
-
-                                <li> 2. In a cocktail shaker, combine tequila, Cointreau, and lime juice. Fill with ice and shake until thoroughly chilled, about 15 seconds (the bottom of a metal shaker should frost over).</li>
-
-                                <li>3. Fill glasses with fresh ice and strain margarita into both glasses. Garnish with lime wheels and serve.</li>
-                            </ul>
-                            <div class="flex flex-row items-center mt-4 text-gray-700">
-                                <div class="w-1/2 md:text-xl font-bold">
-                                    Enjoy your homemade cocktail!!
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </section>
-        <section id="add-drinks" class="fixed top-0 left-0 z-1">
+
+
+        <section id="add-drinks" class="fixed top-0 left-0 z-20 hidden">
             <div class="w-full max-w-screen-xl bg-gray-900 mx-auto px-6">
                 <div class="flex justify-center p-4 px-3 py-10">
                     <div class="w-full max-w-md">
@@ -134,7 +101,7 @@
                     </div>
                 </div>
             </div>
-            
+
         </section>
 
     </main>
