@@ -39,6 +39,10 @@ favourite drinks or tracking inventory of available drinks etc.
 *Work in Progress*
 ![Work in Progress WireFrame](./design-documents/20210411_140402.jpg)
 
+*Rough Draw up*
+![ejct-wireframe](https://user-images.githubusercontent.com/78684306/115366176-3ce2d680-a204-11eb-8ec9-88010bc3c05a.jpg)
+
+
 ## API used
 
  * https://www.thecocktaildb.com/api.php
